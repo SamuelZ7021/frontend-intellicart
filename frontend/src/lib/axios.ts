@@ -6,7 +6,7 @@ const USER_SERVICE_URL = import.meta.env.VITE_USER_SERVICE_URL;
 
 // User Service Client
 export const userApi = axios.create({
-  baseURL: `${USER_SERVICE_URL}/api`,
+  baseURL: `${USER_SERVICE_URL}`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -14,7 +14,7 @@ export const userApi = axios.create({
 
 // Order Service Client
 export const orderApi = axios.create({
-  baseURL: `${import.meta.env.VITE_ORDER_SERVICE_URL || 'http://localhost:8082'}/api`,
+  baseURL: `${import.meta.env.VITE_ORDER_SERVICE_URL}`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -23,7 +23,7 @@ export const orderApi = axios.create({
 // ML Service Client
 // Recommendations are routed through the Java order-service
 export const mlApi = axios.create({
-  baseURL: `${import.meta.env.VITE_ORDER_SERVICE_URL || 'http://localhost:8082'}/api`,
+  baseURL: `${import.meta.env.VITE_ORDER_SERVICE_URL}`,
   headers: {
     'Content-Type': 'application/json',
   },

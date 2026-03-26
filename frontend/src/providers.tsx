@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 import { BrowserRouter } from 'react-router-dom';
 import type { ReactNode } from 'react';
+import { NotificationListener } from './components/notifications/NotificationListener';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -21,6 +22,7 @@ export function Providers({ children }: ProvidersProps) {
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 {children}
+                <NotificationListener />
                 <Toaster richColors position="top-right" />
             </BrowserRouter>
         </QueryClientProvider>

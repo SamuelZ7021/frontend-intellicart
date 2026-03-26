@@ -23,13 +23,17 @@ export const useCartStore = create<CartState>()(
         (set, get) => ({
             items: [],
             addItem: (newItem) => {
+                if (!newItem.productId && newItem.productId !== 0) {
+                    console.error("Attempted to add item without productId", newItem);
+                    return;
+                }
                 const items = get().items;
-                const existingItem = items.find((item) => item.productId === newItem.productId);
+                const existingItem = items.find((item) => String(item.productId) === String(newItem.productId));
 
                 if (existingItem) {
                     set({
                         items: items.map((item) =>
-                            item.productId === newItem.productId
+                            String(item.productId) === String(newItem.productId)
                                 ? { ...item, quantity: item.quantity + newItem.quantity }
                                 : item
                         ),
@@ -39,12 +43,16 @@ export const useCartStore = create<CartState>()(
                 }
             },
             removeItem: (productId) => {
-                set({ items: get().items.filter((item) => item.productId !== productId) });
+                set({ 
+                    items: get().items.filter((item) => String(item.productId) !== String(productId)) 
+                });
             },
             updateQuantity: (productId, quantity) => {
                 set({
                     items: get().items.map((item) =>
-                        item.productId === productId ? { ...item, quantity: Math.max(0, quantity) } : item
+                        String(item.productId) === String(productId) 
+                            ? { ...item, quantity: Math.max(0, quantity) } 
+                            : item
                     ),
                 });
             },

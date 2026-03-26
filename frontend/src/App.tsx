@@ -8,9 +8,14 @@ import { HomePage } from '@/pages/home/HomePage';
 import { CartPage } from '@/pages/cart/CartPage';
 import { ProductDetailPage } from '@/pages/products/ProductDetailPage';
 import { CheckoutPage } from '@/pages/checkout/CheckoutPage';
+import { ProfilePage } from '@/pages/auth/ProfilePage';
+import { UserAddProductPage } from '@/pages/products/UserAddProductPage';
 import { UserListPage } from '@/pages/admin/UserListPage';
 import { UserDetailPage } from '@/pages/admin/UserDetailPage';
 import { UserFormPage } from '@/pages/admin/UserFormPage';
+import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage';
+import { ProductAdminListPage } from '@/pages/admin/ProductAdminListPage';
+import { ProductFormPage } from '@/pages/admin/ProductFormPage';
 
 function App() {
   return (
@@ -28,9 +33,15 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="cart" element={<CartPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="profile/add-product" element={<UserAddProductPage />} />
 
           {/* Admin Routes */}
           <Route element={<AdminRoute />}>
+            <Route path="admin/dashboard" element={<AdminDashboardPage />} />
+            <Route path="admin/products" element={<ProductAdminListPage />} />
+            <Route path="admin/products/new" element={<ProductFormPage />} />
+            <Route path="admin/products/:id/edit" element={<ProductFormPage />} />
             <Route path="admin/users" element={<UserListPage />} />
             <Route path="admin/users/new" element={<UserFormPage />} />
             <Route path="admin/users/:id" element={<UserDetailPage />} />
